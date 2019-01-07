@@ -4,6 +4,7 @@ import GuessCounter from './GuessCounter'
 import { DateRangePicker } from 'react-dates';
 import 'react-dates/initialize';
 import 'react-dates/lib/css/_datepicker.css';
+import '../style/booking.css';
 
 const now = moment();
 console.log(now.format('MMM Do'));
@@ -20,11 +21,16 @@ export default class BookingForm extends React.Component{
 
   increment = () => {
     this.setState(prev => ({
-      value: prev.value + 1
+      value: prev.value + 1 
     }))
   }
 
-  //onDatesChange=
+  onDatesChange = ({startDate, endDate}) => {
+    this.setState(() => ({
+      createdAt: startDate,
+      endAt: endDate
+    }));
+  }
 
   render(){
     return(
@@ -34,11 +40,14 @@ export default class BookingForm extends React.Component{
         increment = {this.increment}
       />
       <DateRangePicker 
+        startDateId = "startDate"
+        endDateId = "endDate"
         startDate = {this.state.createdAt}
         endDate = {this.state.endAt}
-        onDatesChange={({ startDate, endDate }) => { this.setState({ startDate, endDate })}}
+        onDatesChange={this.onDatesChange}
         focusedInput={this.state.focusedInput}
         onFocusChange={(focusedInput) => { this.setState({ focusedInput })}}
+        showClearDates
       />
       </div>
     )
