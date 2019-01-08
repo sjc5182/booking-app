@@ -7,7 +7,7 @@ const GuessCounter = (props) => (
     <div><i className="fas fa-minus" /></div>
     <div>{props.valueCount}</div>
     <div onClick={props.increment}><i className="fas fa-plus" /></div>
-    <div><i class="fas fa-cart-plus"></i></div>
+    <div><i className="fas fa-cart-plus"></i></div>
   </div>
 );
 

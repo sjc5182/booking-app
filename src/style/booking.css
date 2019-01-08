@@ -1,18 +1,32 @@
 .container {
   display: flex;
-  height: auto;
-  width: 900px;
-  justify-content: space-between;
+  max-height: 48px;
+  justify-content: center;
+  /* justify-content: space-between; */
 }
 
 .counterdisplay {
-  border: 1px solid #dbdbdb;
+  border: 1px solid #bdbdbd;
   background-color: #fff;
   padding: 10px;
-  width: 200px;
+  width: 281px;
   height: auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
+.itemlist {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  width: 281px;
+  height: 120px;
+  border: 1px solid #bdbdbd;
+  border-right: none;
+  border-left: none;
+  background-color: #fff;
+  list-style-type: none;
+  overflow-y: scroll;
+  
+}
