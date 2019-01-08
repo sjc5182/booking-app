@@ -1,11 +1,13 @@
 import React from 'react';
+import '../style/booking.css';
 
 
 const GuessCounter = (props) => (
-  <div>
+  <div className="counterdisplay">
+    <div><i className="fas fa-minus" /></div>
     <div>{props.valueCount}</div>
     <div onClick={props.increment}><i className="fas fa-plus" /></div>
-    <div><i className="fas fa-minus" /></div>
+    <div><i class="fas fa-cart-plus"></i></div>
   </div>
 );
 

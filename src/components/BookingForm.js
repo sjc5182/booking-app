@@ -34,11 +34,11 @@ export default class BookingForm extends React.Component{
 
   render(){
     return(
-      <div>
-      <GuessCounter 
-        valueCount = {this.state.value}
-        increment = {this.increment}
-      />
+      <div className="container">
+        <GuessCounter 
+          valueCount = {this.state.value}
+          increment = {this.increment}
+        />
       <DateRangePicker 
         startDateId = "startDate"
         endDateId = "endDate"

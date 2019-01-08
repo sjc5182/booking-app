@@ -1,6 +1,9 @@
 .App {
   background: #efefef;
-  padding: 20px;
+  width: auto;
+  margin: 25px;
+  border: 1px solid yellow;
+  padding: 20px 200px;
 }
 
 /* /* .App-logo {
