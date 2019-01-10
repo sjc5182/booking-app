@@ -30,8 +30,9 @@ export default class BookingForm extends React.Component{
   }
 
   targetClick = (e) =>{
+    console.log(e.target.vaule);
     this.setState({
-      listTarget: e.target
+      listTarget: "TEST"
     })
   }
   onDatesChange = ({startDate, endDate}) => {
@@ -59,7 +60,7 @@ export default class BookingForm extends React.Component{
           onFocusChange={(focusedInput) => { this.setState({ focusedInput })}}
           showClearDates
         />
-        <button>Add</button>
+        <button onClick = {this.targetClick}>Add</button>
       </div>
     )
   }
