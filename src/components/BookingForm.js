@@ -1,7 +1,6 @@
 import React from 'react';
 import moment from 'moment';
 import GuessCounter from './GuessCounter'
-//import ItemListDrop from './ItemListDrop';
 import ProductList from './product-list-container/ProductList';
 import { DateRangePicker } from 'react-dates';
 import 'react-dates/initialize';
@@ -18,6 +17,7 @@ export default class BookingForm extends React.Component{
     this.state = {
       value: 0,
       createdAt: moment(),
+      listTarget: null,
       endAt: moment().add(1, 'days'),
       focusedInput: null
     }
@@ -29,6 +29,11 @@ export default class BookingForm extends React.Component{
     }))
   }
 
+  targetClick = (e) =>{
+    this.setState({
+      listTarget: e.target
+    })
+  }
   onDatesChange = ({startDate, endDate}) => {
     this.setState(() => ({
       createdAt: startDate,
@@ -54,6 +59,7 @@ export default class BookingForm extends React.Component{
           onFocusChange={(focusedInput) => { this.setState({ focusedInput })}}
           showClearDates
         />
+        <button>Add</button>
       </div>
     )
   }
