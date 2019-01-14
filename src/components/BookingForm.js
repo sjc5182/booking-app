@@ -1,8 +1,7 @@
 import React from 'react';
 import moment from 'moment';
-import GuessCounter from './GuessCounter'
+import GuessCounter from './GuessCounter';
 import ProductList from './product-list-container/ProductList';
-import './ProductDisplayPanel';
 import { DateRangePicker } from 'react-dates';
 import 'react-dates/initialize';
 import 'react-dates/lib/css/_datepicker.css';
@@ -16,26 +15,20 @@ export default class BookingForm extends React.Component{
   constructor(props){
     super(props);
     this.state = {
-      value: 0,
       createdAt: moment(),
-      listTarget: [],
       endAt: moment().add(1, 'days'),
-      focusedInput: null
+      focusedInput: null,
+      countValue: 0,
+      targetList: null
     }
   }
 
-  increment = () => {
-    this.setState(prev => ({
-      value: prev.value + 1 
-    }))
-  }
-
-  targetClick = (e) =>{
-    console.log(e.target.vaule);
+  itemClick = (e) => {
     this.setState({
-      listTarget: "TEST"
+      targetList: e.target.innerHTML
     })
   }
+
   onDatesChange = ({startDate, endDate}) => {
     this.setState(() => ({
       createdAt: startDate,
@@ -43,39 +36,57 @@ export default class BookingForm extends React.Component{
     }));
   }
 
-  handleSubmit =(e)=>{
-    e.preventDefault();
-    this.setState(()=>({
-      value: this.state.value
-    }));
+  increment = () => {
+    this.setState(prev => ({
+      countValue: prev.countValue + 1 
+    }))
   }
+  decrement = () => {
+    this.setState(prev => ({
+      countValue: prev.countValue - 1
+    }))
+  }
+
+  handleSubmit = (e) =>{
+    const json = localStorage.getItem('count');
+    const item = localStorage.getItem('item');
+    const count = JSON.parse(json);
+
+    this.setState(() => ({
+      countValue: count,
+      targetList: item
+    }))
+  }
+  
+  componentDidUpdate(){
+    const json = JSON.stringify(this.state.countValue);
+    localStorage.setItem('count', json);
+    localStorage.setItem('item', this.state.targetList);
+  }
+  
   render(){
     return(
-      
         <form onSubmit={this.handleSubmit}>
-        <div className="container">
-          <GuessCounter 
-            valueCount = {this.state.value}
-            increment = {this.increment}
-          />
-          <ProductList />
-          <DateRangePicker 
-            startDateId = "startDate"
-            endDateId = "endDate"
-            startDate = {this.state.createdAt}
-            endDate = {this.state.endAt}
-            onDatesChange={this.onDatesChange}
-            focusedInput={this.state.focusedInput}
-            onFocusChange={(focusedInput) => { this.setState({ focusedInput })}}
-            showClearDates
-          />
-          <input type="submit" valule="Submit" />
+          <div className="container">
+            <GuessCounter 
+              valueCount = {this.state.countValue}
+              increment = {this.increment}
+              decrement = {this.decrement}
+            />
+            <ProductList itemClick = {this.itemClick}/>
+            <DateRangePicker 
+              startDateId = "startDate"
+              endDateId = "endDate"
+              startDate = {this.state.createdAt}
+              endDate = {this.state.endAt}
+              onDatesChange={this.onDatesChange}
+              focusedInput={this.state.focusedInput}
+              onFocusChange={(focusedInput) => { this.setState({ focusedInput })}}
+              showClearDates
+            />
+            <input type="submit" valule="Submit" />
           </div>
         </form>
-      
-      // {/* <div>
-      // <ProductDisplayPanel testData = {this.state.createdAt} countvalue = {this.state.value}/>
-      // </div> */}
      
     )
   }

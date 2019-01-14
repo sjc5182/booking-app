@@ -1,5 +1,5 @@
 import React from 'react';
-import ItemListDrop from '../ItemListDrop';
+import '../../style/booking.css';
 
 const test = {
   dropdownlist: [
@@ -40,9 +40,12 @@ const test = {
 
 export default class ProductList extends React.Component{
   render() {
-    
-    return (
-      <ItemListDrop test = {test}/>
-    )
+      return(
+        <div onClick={this.props.itemClick} className="itemlist">
+          {test.dropdownlist.map((item) => (
+            <li key={item.id} onClick={this.itemClick}>{item.name}</li>
+          ))}
+        </div>
+      )
   }
 };

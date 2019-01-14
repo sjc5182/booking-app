@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
 import BookingForm from './components/BookingForm';
-import ProductDisplayPanel from './components/ProductDisplayPanel';
+import FullPanelDisplay from './components/FullPanelDisplay';
+//import ProductDisplayPanel from './components/ProductDisplayPanel';
 
 class App extends Component {
 
@@ -9,9 +10,11 @@ class App extends Component {
     return (
       <div>
         <div className="App">
-        <BookingForm />
+          <BookingForm />
         </div>
-        <ProductDisplayPanel />
+        <div>
+          <FullPanelDisplay />
+        </div>
       </div>
     );
   }
