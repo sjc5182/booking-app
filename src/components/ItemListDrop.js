@@ -1,5 +1,6 @@
 import React from 'react';
 import '../style/booking.css';
+import ProductDisplayPanel from './ProductDisplayPanel';
 
 export default class ItemListDrop extends React.Component{
   state = {
@@ -8,7 +9,7 @@ export default class ItemListDrop extends React.Component{
   
   itemClick = (e) => {
     this.setState({
-      targetList: e.target.value
+      targetList: e.target.innerHTML
     })
   }
   
@@ -18,10 +19,10 @@ export default class ItemListDrop extends React.Component{
       <div>
       <div className="itemlist">
         {test.dropdownlist.map((item) => (
-          <li key={item.id} onClick={this.itemClick} value= {item.id}>{item.name}</li>
+          <li key={item.id} onClick={this.itemClick}>{item.name}</li>
         ))}
       </div>
-      <button onClick= {this.itemClick}>hello</button>
+      <ProductDisplayPanel test = {this.state.targetList}/>
     </div>
     )
   }
