@@ -19,7 +19,7 @@ export default class BookingForm extends React.Component{
       endAt: moment().add(1, 'days'),
       focusedInput: null,
       countValue: 0,
-      targetList: null
+      targetList: null,
     }
   }
 
@@ -48,20 +48,25 @@ export default class BookingForm extends React.Component{
   }
 
   handleSubmit = (e) =>{
-    const json = localStorage.getItem('count');
-    const item = localStorage.getItem('item');
-    const count = JSON.parse(json);
+    // const json = localStorage.getItem('count');
+    // const item = localStorage.getItem('item');
+    // console.log(localStorage.getItem('startDate'));
 
-    this.setState(() => ({
-      countValue: count,
-      targetList: item
-    }))
+    // const count = JSON.parse(json);
+
+    // this.setState(() => ({
+    //   countValue: count,
+    //   targetList: item
+    // }))
+    // e.preventDefault();
   }
   
   componentDidUpdate(){
     const json = JSON.stringify(this.state.countValue);
     localStorage.setItem('count', json);
     localStorage.setItem('item', this.state.targetList);
+      localStorage.setItem('startDate', this.state.createdAt);
+      localStorage.setItem('endDate', this.state.endAt);
   }
   
   render(){
