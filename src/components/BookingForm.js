@@ -58,7 +58,7 @@ export default class BookingForm extends React.Component{
     //   countValue: count,
     //   targetList: item
     // }))
-    // e.preventDefault();
+     e.preventDefault();
   }
   
   componentDidUpdate(){
@@ -71,7 +71,7 @@ export default class BookingForm extends React.Component{
   
   render(){
     return(
-        <form onSubmit={this.handleSubmit}>
+        <div onSubmit={this.handleSubmit}>
           <div className="container">
             <GuessCounter 
               valueCount = {this.state.countValue}
@@ -91,7 +91,7 @@ export default class BookingForm extends React.Component{
             />
             <input type="submit" valule="Submit" />
           </div>
-        </form>
+        </div>
      
     )
   }
