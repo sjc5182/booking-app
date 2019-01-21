@@ -1,6 +1,7 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
-export default class FullPanelDisplay extends React.Component {
+class FullPanelDisplay extends React.Component {
 
   state = {
     item: null,
@@ -34,6 +35,10 @@ render(){
 }
 }
 
+const mapStateToProps = (state) => {
+  return {
+    count: state.count
+  };
+};
 
-
-
+export default connect(mapStateToProps)(FullPanelDisplay);
