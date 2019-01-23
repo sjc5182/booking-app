@@ -11,8 +11,8 @@ class App extends Component {
     return (
       <div>
         <div className="App">
-          <TestRedux />
-          {/* <BookingForm /> */}
+          {/* <TestRedux /> */}
+          <BookingForm />
         </div>
         {/* <div>
           <FullPanelDisplay />

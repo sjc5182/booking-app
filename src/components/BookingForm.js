@@ -2,6 +2,8 @@ import React from 'react';
 import moment from 'moment';
 import GuessCounter from './GuessCounter';
 import ProductList from './product-list-container/ProductList';
+import { connect } from 'react-redux';
+import { incrementCount, decrementCount } from '../actions/counter';
 import { DateRangePicker } from 'react-dates';
 import 'react-dates/initialize';
 import 'react-dates/lib/css/_datepicker.css';
@@ -11,7 +13,7 @@ const now = moment();
 console.log(now.format('MMM Do'));
 
 
-export default class BookingForm extends React.Component{
+class BookingForm extends React.Component{
   constructor(props){
     super(props);
     this.state = {
@@ -37,15 +39,21 @@ export default class BookingForm extends React.Component{
   }
 
   increment = () => {
-    this.setState(prev => ({
-      countValue: prev.countValue + 1 
-    }))
-  }
+    this.props.dispatch(incrementCount());
+  };
   decrement = () => {
-    this.setState(prev => ({
-      countValue: prev.countValue - 1
-    }))
-  }
+    this.props.dispatch(decrementCount());
+  };
+  // increment = () => {
+  //   this.setState(prev => ({
+  //     countValue: prev.countValue + 1 
+  //   }))
+  // }
+  // decrement = () => {
+  //   this.setState(prev => ({
+  //     countValue: prev.countValue - 1
+  //   }))
+  // }
 
   handleSubmit = (e) =>{
     // const json = localStorage.getItem('count');
@@ -61,20 +69,20 @@ export default class BookingForm extends React.Component{
      e.preventDefault();
   }
   
-  componentDidUpdate(){
-    const json = JSON.stringify(this.state.countValue);
-    localStorage.setItem('count', json);
-    localStorage.setItem('item', this.state.targetList);
-      localStorage.setItem('startDate', this.state.createdAt);
-      localStorage.setItem('endDate', this.state.endAt);
-  }
+  // componentDidUpdate(){
+  //   const json = JSON.stringify(this.state.countValue);
+  //   localStorage.setItem('count', json);
+  //   localStorage.setItem('item', this.state.targetList);
+  //     localStorage.setItem('startDate', this.state.createdAt);
+  //     localStorage.setItem('endDate', this.state.endAt);
+  // }
   
   render(){
     return(
         <div onSubmit={this.handleSubmit}>
           <div className="container">
             <GuessCounter 
-              valueCount = {this.state.countValue}
+              valueCount = {this.props.count}
               increment = {this.increment}
               decrement = {this.decrement}
             />
@@ -97,3 +105,11 @@ export default class BookingForm extends React.Component{
   }
 
 }
+
+const mapStateToProps = (state) => {
+  return {
+    count: state.count
+  };
+};
+
+export default connect(mapStateToProps)(BookingForm);
