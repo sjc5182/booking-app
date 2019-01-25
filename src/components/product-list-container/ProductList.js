@@ -41,9 +41,9 @@ const test = {
 export default class ProductList extends React.Component{
   render() {
       return(
-        <div onClick={this.props.itemClick} className="itemlist">
+        <div className="itemlist">
           {test.dropdownlist.map((item) => (
-            <li key={item.id} onClick={this.itemClick}>{item.name}</li>
+            <li key={item.id} onClick={this.props.itemClick}>{item.name}</li>
           ))}
         </div>
       )

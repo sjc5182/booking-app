@@ -3,7 +3,7 @@ import moment from 'moment';
 import GuessCounter from './GuessCounter';
 import ProductList from './product-list-container/ProductList';
 import { connect } from 'react-redux';
-import { incrementCount, decrementCount } from '../actions/counter';
+import { addItem } from '../actions/counter';
 import { DateRangePicker } from 'react-dates';
 import 'react-dates/initialize';
 import 'react-dates/lib/css/_datepicker.css';
@@ -17,11 +17,11 @@ class BookingForm extends React.Component{
   constructor(props){
     super(props);
     this.state = {
-      createdAt: moment(),
-      endAt: moment().add(1, 'days'),
-      focusedInput: null,
+      // createdAt: moment(),
+      // endAt: moment().add(1, 'days'),
+      // focusedInput: null,
       countValue: 0,
-      targetList: null,
+      targetList: ''
     }
   }
 
@@ -37,25 +37,38 @@ class BookingForm extends React.Component{
       endAt: endDate
     }));
   }
-
-  increment = () => {
-    this.props.dispatch(incrementCount());
-  };
-  decrement = () => {
-    this.props.dispatch(decrementCount());
-  };
+  // itemClick = () =>{
+  //   this.props.dispatch(addItem())
+  // }
   // increment = () => {
-  //   this.setState(prev => ({
-  //     countValue: prev.countValue + 1 
-  //   }))
-  // }
+  //   this.props.dispatch(incrementCount());
+  // };
   // decrement = () => {
-  //   this.setState(prev => ({
-  //     countValue: prev.countValue - 1
-  //   }))
-  // }
+  //   this.props.dispatch(decrementCount());
+  // };
+  increment = () => {
+    this.setState(prev => ({
+      countValue: prev.countValue + 1 
+    }))
+  }
+  decrement = () => {
+    this.setState(prev => ({
+      countValue: prev.countValue - 1
+    }))
+  }
 
-  handleSubmit = (e) =>{
+  handleSubmit = (e) => {
+    this.props.dispatch(addItem(
+      {
+        count: this.state.countValue,
+        food: this.state.targetList
+      }
+    ));
+  }
+  
+  
+  
+    
     // const json = localStorage.getItem('count');
     // const item = localStorage.getItem('item');
     // console.log(localStorage.getItem('startDate'));
@@ -66,8 +79,8 @@ class BookingForm extends React.Component{
     //   countValue: count,
     //   targetList: item
     // }))
-     e.preventDefault();
-  }
+     
+  
   
   // componentDidUpdate(){
   //   const json = JSON.stringify(this.state.countValue);
@@ -79,15 +92,14 @@ class BookingForm extends React.Component{
   
   render(){
     return(
-        <div onSubmit={this.handleSubmit}>
           <div className="container">
             <GuessCounter 
-              valueCount = {this.props.count}
+              valueCount = {this.state.countValue}
               increment = {this.increment}
               decrement = {this.decrement}
             />
             <ProductList itemClick = {this.itemClick}/>
-            <DateRangePicker 
+            {/* <DateRangePicker 
               startDateId = "startDate"
               endDateId = "endDate"
               startDate = {this.state.createdAt}
@@ -96,20 +108,13 @@ class BookingForm extends React.Component{
               focusedInput={this.state.focusedInput}
               onFocusChange={(focusedInput) => { this.setState({ focusedInput })}}
               showClearDates
-            />
-            <input type="submit" valule="Submit" />
+            /> */}
+            <button onClick = {this.handleSubmit}>Submit</button>
           </div>
-        </div>
-     
     )
   }
 
 }
 
-const mapStateToProps = (state) => {
-  return {
-    count: state.count
-  };
-};
 
-export default connect(mapStateToProps)(BookingForm);
+export default connect()(BookingForm);
