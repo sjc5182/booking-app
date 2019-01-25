@@ -13,7 +13,7 @@ import uuid from 'uuid';
 
 export const addItem = (
   { 
-    count = '',
+    count = 0,
     food = ''
   } = {}
 ) => ({

@@ -2,17 +2,20 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 
-const FullPanelDisplay = (props) => (// this is version what we want props from store to be display in component
-  <div>
-   {console.log(props)}
-</div>
-);
+const FullPanelDisplay = (props) =>(
+  props.itemAdd.map((item)=>{
+    return(<div key = {item.id}>{item.food}</div>)
+  })
+)
+
+const mapStateToProps = (state) => {
+  return {
+    itemAdd: state.itemAdd
+  }
+}
 
 
-
-
-
-export default connect()(FullPanelDisplay);
+export default connect(mapStateToProps)(FullPanelDisplay);
   // state = {
   //   item: null,
   //   startDate: null,
