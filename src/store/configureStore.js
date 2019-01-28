@@ -2,6 +2,7 @@ import { createStore, combineReducers } from 'redux';
 import itemAdd from '../reducers/itemadd';
 
 export default () => {
+  // This is where object properties being initialize
   const store = createStore(
     combineReducers({
       itemAdd
