@@ -1,22 +1,58 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+class FullPanelDisplay extends React.Component{
+  
+  constructor(){
+    super();
+    this.state = {
+      food: []
+    }
+  }
 
-const FullPanelDisplay = (props) =>(
-  props.itemAdd.map((item)=>{
-    return(<div key = {item.id}>{item.food}</div>)
-  })
-)
-
-const mapStateToProps = (state) => {
-  return {
-    itemAdd: state.itemAdd
+  componentDidMount(){
+    console.log('Testing fetch data display');
+    fetch('http://localhost:8000/food/')
+      .then(response => response.json())
+      .then(data => this.setState({
+        food: data
+      }))
+  }
+  
+  
+  render(){
+    return(
+      <div></div>
+    )
   }
 }
+// const FullPanelDisplay = (props) =>(
+//   props.itemAdd.map((item)=>{
+//     return(<div key = {item.id}>{item.food}</div>)
+//   })
+// )
+
+// const mapStateToProps = (state) => {
+//   return {
+//     itemAdd: state.itemAdd
+//   }
+// }
+export default FullPanelDisplay;
+
+//export default connect(mapStateToProps)(FullPanelDisplay);
+ 
 
 
-export default connect(mapStateToProps)(FullPanelDisplay);
-  // state = {
+
+
+
+
+
+
+
+
+
+// state = {
   //   item: null,
   //   startDate: null,
   //   endDate: null,
