@@ -15,18 +15,18 @@ const store = configureStore();
 
 // store.dispatch(incrementCount());
 //store.dispatch(decrementCount());
- store.dispatch(addItem(
-  {
-    count: 2,
-    food: "Pork"
-  }
-));
-store.dispatch(addItem(
-  {
-    count: 3,
-    food: "Chicken"
-  }
-));
+//  store.dispatch(addItem(
+//   {
+//     count: 2,
+//     food: "Pork"
+//   }
+// ));
+// store.dispatch(addItem(
+//   {
+//     count: 3,
+//     food: "Chicken"
+//   }
+// ));
 
 
 const jsx = (

@@ -3,7 +3,7 @@ import moment from 'moment';
 import GuessCounter from './GuessCounter';
 import ProductList from './product-list-container/ProductList';
 import { connect } from 'react-redux';
-import { addItem } from '../actions/counter';
+//import { addItem } from '../actions/counter';
 import { DateRangePicker } from 'react-dates';
 import 'react-dates/initialize';
 import 'react-dates/lib/css/_datepicker.css';
@@ -57,14 +57,14 @@ class BookingForm extends React.Component{
     }))
   }
 
-  handleSubmit = (e) => {
-    this.props.dispatch(addItem(
-      {
-        count: this.state.countValue,
-        food: this.state.targetList
-      }
-    ));
-  }
+  // handleSubmit = (e) => {
+  //   this.props.dispatch(addItem(
+  //     {
+  //       count: this.state.countValue,
+  //       food: this.state.targetList
+  //     }
+  //   ));
+  // }
   
   
   

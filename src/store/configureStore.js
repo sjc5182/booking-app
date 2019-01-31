@@ -1,15 +1,13 @@
-import { createStore, combineReducers } from 'redux';
-import itemAdd from '../reducers/itemadd';
+import { createStore, compose, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
+import rootReducer from '../reducers/allReducers';
 
 export default () => {
-  // This is where object properties being initialize
-  const store = createStore(
-    combineReducers({
-      itemAdd
-    }),
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+  return createStore(
+      rootReducer,
+      composeEnhancer(applyMiddleware(thunk))
   );
-  return store;
-  
-};
+}
 
