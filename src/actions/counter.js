@@ -1,4 +1,3 @@
-import uuid from 'uuid';
 import axios from 'axios';
 
 // export const incrementCount = ({incrementBy = 1} = {}) => ({
@@ -12,14 +11,16 @@ import axios from 'axios';
 // })
 
 
-export function itemsFetchDataSuccess(items) {
-  return {
+export const itemsFetchDataSuccess = (items) => ({
+  // return {
+  //   type: 'ITEMS_FETCH_DATA_SUCCESS',
+  //   items
+  // }
     type: 'ITEMS_FETCH_DATA_SUCCESS',
     items
-  }
-}
+})
 
-export function itemsFetchData(url) {
+export const itemsFetchData = (url) => {
   return (dispatch) => {
     axios.get(url).then(response => {
       return response;
@@ -31,16 +32,3 @@ export function itemsFetchData(url) {
 
 
 
-// export const addItem = (
-//   { 
-//     count = 0,
-//     food = ''
-//   } = {}
-// ) => ({
-//   type: 'ADD_Item',
-//   item: {
-//     id: uuid(),
-//     count,
-//     food
-//   }
-// });

@@ -41,7 +41,10 @@
 export default(state = [], action) => {
   switch (action.type) {
       case 'ITEMS_FETCH_DATA_SUCCESS':
-          return action.items;
+          return [
+            ...state,
+            ...action.items
+          ];
       default:
           return state;
   }

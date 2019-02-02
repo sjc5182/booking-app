@@ -13,7 +13,7 @@ class FullPanelDisplay extends React.Component{
 
   componentDidMount(){
     this.props.fetchData('http://localhost:8000/food/');
-    console.log(this.props)
+   
     // console.log('Testing fetch data display');
     // fetch('http://localhost:8000/food/')
     //   .then(response => response.json())
@@ -26,7 +26,6 @@ class FullPanelDisplay extends React.Component{
   render(){
     return(
       <div>
-        {console.log(this.props)}
         {this.props.items.map(item => <div key = {item.id}>{item.id}: {item.itemCount} cases of {item.ingredientName}</div>)}
       </div>
     )

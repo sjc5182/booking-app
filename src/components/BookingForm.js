@@ -3,8 +3,8 @@ import moment from 'moment';
 import GuessCounter from './GuessCounter';
 import ProductList from './product-list-container/ProductList';
 import { connect } from 'react-redux';
-//import { addItem } from '../actions/counter';
-import { DateRangePicker } from 'react-dates';
+import { addItem } from '../actions/addItem';
+//import { DateRangePicker } from 'react-dates';
 import 'react-dates/initialize';
 import 'react-dates/lib/css/_datepicker.css';
 import '../style/booking.css';
@@ -21,7 +21,9 @@ class BookingForm extends React.Component{
       // endAt: moment().add(1, 'days'),
       // focusedInput: null,
       countValue: 0,
-      targetList: ''
+      targetList: '',
+      email: null,
+      password: null
     }
   }
 
@@ -57,14 +59,22 @@ class BookingForm extends React.Component{
     }))
   }
 
-  // handleSubmit = (e) => {
-  //   this.props.dispatch(addItem(
-  //     {
-  //       count: this.state.countValue,
-  //       food: this.state.targetList
-  //     }
-  //   ));
-  // }
+
+  handleChange = (e) =>{
+    const {name, value} = e.target;
+    this.state[name] = value
+    this.setState(this.state)
+    console.log(this.state.email)
+  }
+
+  handleSubmit = (e) => {
+    this.props.dispatch(addItem(
+      {
+        count: this.state.countValue,
+        food: this.state.targetList
+      }
+    ));
+  }
   
   
   
@@ -109,12 +119,21 @@ class BookingForm extends React.Component{
               onFocusChange={(focusedInput) => { this.setState({ focusedInput })}}
               showClearDates
             /> */}
+            <input type="text" name="email" onChange={this.handleChange}/>
+            <input type="text" name="password" onChange={this.handleChange}/>
             <button onClick = {this.handleSubmit}>Submit</button>
+            <div> {this.props.addItem.map(item => <div key = {item.id}>{item.id}: {item.count} cases of {item.food}</div>)}
+     </div>
           </div>
     )
   }
 
 }
 
+const mapStateToProps = (state) => {
+  return {
+    addItem: state.addItem
+  }
+}
 
-export default connect()(BookingForm);
+export default connect(mapStateToProps)(BookingForm);
