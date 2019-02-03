@@ -62,12 +62,11 @@ class BookingForm extends React.Component{
 
   handleChange = (e) =>{
     const {name, value} = e.target;
-    this.state[name] = value
-    this.setState(this.state)
+    this.setState({[name]: value})
     console.log(this.state.email)
   }
 
-  handleSubmit = (e) => {
+  handleSubmit = () => {
     this.props.dispatch(addItem(
       {
         count: this.state.countValue,
