@@ -1,10 +1,10 @@
 const foodIngredientsReducerDefaultState = []
 export default (state=foodIngredientsReducerDefaultState, action)=>{
   switch (action.type){
-    case 'ADD_Item':
+    case 'ADD_Items':
       return[
         ...state,
-        action.item
+        action.items
       ];
     default: 
       return state;

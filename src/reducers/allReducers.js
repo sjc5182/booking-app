@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
-import items from './itemadd';
-import addItem from './addItem';
+import fetchItems from './fetchItems';
+import addItems from './addItems';
 
 export default combineReducers({
-  items,
-  addItem
+  fetchItems,
+  addItems
 });

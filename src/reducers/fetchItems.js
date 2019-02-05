@@ -1,3 +1,35 @@
+export default(state = [], action) => {
+  switch (action.type) {
+      case 'ITEMS_FETCH_DATA_SUCCESS':
+          return [
+            // ...state,
+            ...action.items
+          ];
+      default:
+          return state;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // const foodIngredientsReducerDefaultState = []
 
 // export default (state=foodIngredientsReducerDefaultState, action)=>{
@@ -37,15 +69,3 @@
 //           return state;
 //   }
 // }
-
-export default(state = [], action) => {
-  switch (action.type) {
-      case 'ITEMS_FETCH_DATA_SUCCESS':
-          return [
-            ...state,
-            ...action.items
-          ];
-      default:
-          return state;
-  }
-}

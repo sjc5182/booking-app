@@ -1,32 +1,17 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { itemsFetchData } from '../actions/counter';
+import { itemsFetchData } from '../actions/fetchItems';
 
 class FullPanelDisplay extends React.Component{
   
-  constructor(props){
-    super(props);
-    this.state = {
-      food: []
-    }
-  }
-
   componentDidMount(){
     this.props.fetchData('http://localhost:8000/food/');
-   
-    // console.log('Testing fetch data display');
-    // fetch('http://localhost:8000/food/')
-    //   .then(response => response.json())
-    //   .then(data => this.setState({
-    //     food: data
-    //   }))
   }
-  
   
   render(){
     return(
       <div>
-        {this.props.items.map(item => <div key = {item.id}>{item.id}: {item.itemCount} cases of {item.ingredientName}</div>)}
+        {this.props.items.map((item) => <div key = {item.id}>{item.id}: {item.itemCount} cases of {item.ingredientName}</div>)}
       </div>
     )
   }
@@ -34,7 +19,7 @@ class FullPanelDisplay extends React.Component{
 
 const mapStateToProps = (state) => {
   return {
-    items: state.items
+    items: state.fetchItems
   }
 }
 
@@ -43,29 +28,41 @@ const mapDispatchToProps = (dispatch) => {
     fetchData: (url) => dispatch(itemsFetchData(url))
   }
 }
+
+export default connect(mapStateToProps,mapDispatchToProps)(FullPanelDisplay);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // const FullPanelDisplay = (props) =>(
 //   props.itemAdd.map((item)=>{
 //     return(<div key = {item.id}>{item.food}</div>)
 //   })
 // )
 
-// const mapStateToProps = (state) => {
-//   return {
-//     itemAdd: state.itemAdd
-//   }
-// }
-export default connect(mapStateToProps,mapDispatchToProps)(FullPanelDisplay);
-
-//export default connect(mapStateToProps)(FullPanelDisplay);
- 
 
 
-
-
-
-
-
-
+// console.log('Testing fetch data display');
+    // fetch('http://localhost:8000/food/')
+    //   .then(response => response.json())
+    //   .then(data => this.setState({
+    //     food: data
+    //   }))
 
 
 
