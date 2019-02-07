@@ -10,8 +10,8 @@ import 'react-dates/initialize';
 import 'react-dates/lib/css/_datepicker.css';
 import '../style/booking.css';
 
-const now = moment();
-console.log(now.format('MMM Do'));
+//const now = moment();
+//console.log(now.format('MMM Do'));
 
 
 class BookingForm extends React.Component{
